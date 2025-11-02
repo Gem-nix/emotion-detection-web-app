@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ayomi's Emotion AI</title>
+    <style>
+        body { font-family: Arial; text-align: center; margin: 50px; background: #f4f7f9; }
+        .box { width: 500px; margin: 0 auto; padding: 30px; background: white; border-radius: 15px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
+        h1 { color: #007bff; }
+        input, button { padding: 12px; margin: 10px; width: 90%; font-size: 16px; border-radius: 8px; border: 1px solid #ccc; }
+        button { background: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        img { max-width: 100%; margin: 20px 0; border-radius: 12px; border: 3px solid #007bff; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Emotion Detector</h1>
+        <p>Upload a photo and see your emotion!</p>
+        
+        <form method="POST" enctype="multipart/form-data">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit">Detect My Emotion!</button>
+        </form>
+
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if emotion %}
+        <h2>Hi <strong>{{ name }}</strong>! You look <span style="color:#007bff">{{ emotion }}</span>!</h2>
+        <img src="/{{ image }}" alt="Result">
+        {% endif %}
+    </div>
+</body>
+</html>
